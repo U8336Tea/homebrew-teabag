@@ -16,21 +16,23 @@ def remove(*programs)
     leafText = `brew leaves`
     leafList = leafText.split "\n"
 
+    puts "Removing packages #{programs.join ", "}" if $options[:verbose]
     `brew remove #{programs.join " "}`
 
     newLeafText = `brew leaves`
     newLeafList = newLeafText.split "\n"
 
     leafDiff = newLeafList - leafList
+    puts "Remaining packages: #{leafDiff.join ", "} " if $options[:verbose]
 
     # Recursively remove every leaf that wasn't here before the first remove
     remove *leafDiff unless leafDiff.empty?
 end
 
-options = {}
+$options = {}
 OptionParser.new do |opts|
     opts.on("-v", "--verbose") do |v|
-        options[:verbose] = v
+        $options[:verbose] = v
     end
 end.parse!
 
