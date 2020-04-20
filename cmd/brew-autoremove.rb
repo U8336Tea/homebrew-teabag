@@ -16,7 +16,7 @@ def remove(*programs)
     leafText = `brew leaves`
     leafList = leafText.split "\n"
 
-    puts "Removing packages #{programs.join ", "}" if $options[:verbose]
+    puts "Removing packages: #{programs.join ", "}" if $options[:verbose]
     puts `brew remove #{programs.join " "}`
 
     newLeafText = `brew leaves`
@@ -37,4 +37,4 @@ OptionParser.new do |opts|
 end.parse!
 
 remove *ARGV
-puts "Successfully removed packages #{ARGV.join ", "}"
+puts "Successfully removed packages: #{ARGV.join ", "}"
