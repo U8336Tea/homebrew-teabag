@@ -37,3 +37,4 @@ OptionParser.new do |opts|
 end.parse!
 
 remove *ARGV
+puts "Successfully removed packages #{ARGV.join ", "}"
