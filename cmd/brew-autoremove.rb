@@ -17,7 +17,7 @@ def remove(*programs)
     leafList = leafText.split "\n"
 
     puts "Removing packages #{programs.join ", "}" if $options[:verbose]
-    `brew remove #{programs.join " "}`
+    puts `brew remove #{programs.join " "}`
 
     newLeafText = `brew leaves`
     newLeafList = newLeafText.split "\n"
