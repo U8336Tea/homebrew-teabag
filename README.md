@@ -12,4 +12,7 @@ brew install https://raw.githubusercontent.com/U8336Tea/homebrew-teabag/master/F
 ```
 
 ## Documentation
-`brew help`, `man brew` or check [Homebrew's documentation](https://docs.brew.sh).
+`brew help <command>` to get help for commands
+
+## Commands
+`brew autoremove:` Removes a formula and all its dependencies.
