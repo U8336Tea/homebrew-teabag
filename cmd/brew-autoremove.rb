@@ -1,9 +1,16 @@
 #!/bin/ruby
 
-#: Usage: brew autoremove [packages]
+#:`Usage: brew autoremove [packages]`
 #:
-#: Currently uses a recursive method using brew leaves
-#: There's probably a better way but idk yet
+#:Removes a target and all its dependencies.
+#:
+#:Currently uses a recursive method using brew leaves.
+#:There's probably a better way but this works for me.
+#:
+#:    -v, --verbose                            Enables verbose mode.
+#:    -h, --help                               Show this message.
+
+require 'optparse'
 
 def remove(*programs)
     leafText = `brew leaves`
@@ -19,5 +26,12 @@ def remove(*programs)
     # Recursively remove every leaf that wasn't here before the first remove
     remove *leafDiff unless leafDiff.empty?
 end
+
+options = {}
+OptionParser.new do |opts|
+    opts.on("-v", "--verbose") do |v|
+        options[:verbose] = v
+    end
+end.parse!
 
 remove *ARGV
