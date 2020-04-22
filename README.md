@@ -15,4 +15,4 @@ brew install https://raw.githubusercontent.com/U8336Tea/homebrew-teabag/master/F
 `brew help <command>` to get help for commands
 
 ## Commands
-**brew autoremove:** Removes a formula and all its dependencies.
+**brew autoremove:** Removes a formula and all its dependencies. This is like `rmtree`, but it does not depend on a formula dependency list. This comes at the cost of effeciency.
