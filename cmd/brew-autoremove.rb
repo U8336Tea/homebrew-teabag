@@ -17,7 +17,11 @@ def remove(*programs)
     leafList = leafText.split "\n"
 
     puts "Removing packages: #{programs.join ", "}" if $options[:verbose]
-    puts `brew remove #{programs.join " "}`
+
+    removeResult = `brew remove #{programs.join " "} 2>&1`
+    removeResult.slice! 'Error: ' # Prevent duplicate Error: label
+    raise removeResult unless $?.success?
+    puts removeResult
 
     newLeafText = `brew leaves`
     newLeafList = newLeafText.split "\n"
